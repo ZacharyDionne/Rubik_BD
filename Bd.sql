@@ -30,14 +30,15 @@ CREATE TABLE  IF NOT EXISTS Scores(
     nomMotif VARCHAR(255) NOT NULL
     dateScore DATE NOT NULL,
     FOREIGN KEY (idMotifScore) REFERENCES Motif(idMotif),
-    FOREIGN KEY (nomMotif) REFERENCES Motif(nomMotif),
-    FOREIGN KEY (createur) REFERENCES Motif(createur)
+--    FOREIGN KEY (nomMotif) REFERENCES Motif(nomMotif),
+--    FOREIGN KEY (createur) REFERENCES Motif(createur)
 );
 
 
 
 -- ||----------------------------------------- PROCÉDURES STOCKÉES -----------------------------------------||
 -- AJOUT D'UN MOTIF PAR UN UTILISATEUR
+
 
 
 
@@ -98,30 +99,14 @@ CREATE OR REPLACE VIEW v_Type AS
 SELECT *
 FROM Types;
 
--- Motifs qui ont un score seulement
-  CREATE OR REPLACE VIEW v_ScoreMotifs AS
-    SELECT nom_utilisateur, nom, prenom
-    FROM utilisateurs;
- --   INNER JOIN score ON trajet.id_Trajet = localisation.id_trajet
+-- Afficher tous les motifs en date décroissant
+CREATE OR REPACE VIEW v_MotifDateOrderDesc AS
+SELECT *
+FROM Motifs
+ORDER BY date DESC;
 
-
-CREATE OR REPLACE VIEW v_Materiel AS
-    SELECT *
-    FROM materiel;
-
-CREATE OR REPLACE VIEW v_Prets AS
-    SELECT *
-    FROM prets;
-
-CREATE OR REPLACE VIEW v_DetailsPret AS
-    SELECT *
-    FROM details_pret;
-
-INSERT INTO utilisateurs (nom_utilisateur, nom, prenom, mot_de_passe) VALUES
-('JohnDoe123','Doe', 'John','JohnDoe123');
-
-INSERT INTO clients(id, nom, email, no_telephone, poste, no_bureau, type) VALUES
-(null ,'BBB', 'BBB@BBB.BBB', '819-239-293', 32, 32, 'Professeur');
-
-
-
+-- Afficher tous les motifs en date croissant
+CREATE OR REPACE VIEW v_MotifDateOrderDesc AS
+SELECT *
+FROM Motifs
+ORDER BY date ASC;
