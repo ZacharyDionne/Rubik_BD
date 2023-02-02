@@ -8,7 +8,7 @@
 -- TABLE Type()
 CREATE TABLE  IF NOT EXISTS Type(
     idType INT AUTO_INCREMENT PRIMARY KEY,
-    nomType ENUM('Motif de base', 'Motif créer par un utilisateur') NOT NULL
+    nomType VARCHAR(255) NOT NULL
 );
 
 -- TABLE Motif()
@@ -30,6 +30,22 @@ CREATE TABLE  IF NOT EXISTS Scores(
     nomMotif VARCHAR(255) NOT NULL,
     dateScore DATE NOT NULL
 );
+
+-- ||----------------------------------------- INSERTIONS -----------------------------------------||
+-- TYPES
+INSERT INTO type VALUES
+                 (NULL, "Motif de base"),
+                 (NULL, "Motif créer par l'utilisateur");
+
+-- MOTIFS
+INSERT INTO 
+
+-- SCORES
+
+INSERT INTO Motif VALUES (NULL, )
+
+
+
 
 
 
@@ -119,3 +135,5 @@ CREATE OR REPACE VIEW v_MotifDateOrderDesc AS
 SELECT *
 FROM Motifs
 ORDER BY date ASC;
+
+
