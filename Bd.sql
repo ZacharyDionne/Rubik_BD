@@ -7,35 +7,33 @@
 
 -- TABLE Type()
 CREATE TABLE  IF NOT EXISTS Type(
-    idType INT AUTO_INCREMENT PRIMARY KEY,
-    nomType VARCHAR(255) NOT NULL
+    nomType VARCHAR(100) NOT NULL PRIMARY KEY
 );
 
 -- TABLE Motif()
 CREATE TABLE  IF NOT EXISTS Motif(
     idMotif INT AUTO_INCREMENT PRIMARY KEY,
-    type INT NOT NULL,
+    typeNom VARCHAR(100) NOT NULL,
     dateCreation DATE NOT NULL,
     source VARCHAR(255) NOT NULL,
     nomMotif VARCHAR(255) NOT NULL,
     imgCreation TEXT NOT NULL,
-    FOREIGN KEY (type) REFERENCES type(idType)
+    FOREIGN KEY (typeNom) REFERENCES type(nomType)
 );
 
 -- TABLE Score()
 CREATE TABLE  IF NOT EXISTS Scores(
     idScore INT AUTO_INCREMENT PRIMARY KEY,
     idMotifScore INT NOT NULL,
-    createur VARCHAR(255) NOT NULL,
-    nomMotif VARCHAR(255) NOT NULL,
-    dateScore DATE NOT NULL
+    dateScore DATE NOT NULL,
+    FOREIGN KEY (idMotifScore) REFERENCES Motif(idMotif)
 );
 
 -- ||----------------------------------------- INSERTIONS -----------------------------------------||
 -- TYPES
 INSERT INTO type VALUES
-                 (NULL, "Motif de base"),
-                 (NULL, "Motif créer par l'utilisateur");
+                 ("Motif de base"),
+                 ("Motif créer par l'utilisateur");
 
 -- MOTIFS
 INSERT INTO 
@@ -43,8 +41,6 @@ INSERT INTO
 -- SCORES
 
 INSERT INTO Motif VALUES (NULL, )
-
-
 
 
 
@@ -65,6 +61,12 @@ BEGIN
     FROM Motif
     WHERE gps.idMotif = _idMotif;
 END //
+
+
+
+-- Classer les motifs selon le type
+DELIMITER//
+CREATE PROCEDURE motisSelonType
 
 
 
@@ -118,6 +120,13 @@ FROM Motifs;
 CREATE OR REPLACE VIEW v_ScoreComplet AS
 SELECT *
 FROM Scores;
+
+-- Afficher tous les Scores par type
+CREATE OR REPLACE VIEW v_ScoreComplet AS
+SELECT *
+FROM Scores
+GROUP BY idType;
+
 
 -- Afficher tous les types
 CREATE OR REPLACE VIEW v_Type AS
