@@ -24,22 +24,31 @@ CREATE TABLE  IF NOT EXISTS Motif(
 
 -- TABLE Score()
 CREATE TABLE  IF NOT EXISTS Scores(
-    idScore INT AUTO_INCREMENT PRIMARY KEY,BIGINT
+    idScore INT AUTO_INCREMENT PRIMARY KEY,
     idMotifScore INT NOT NULL,
     createur VARCHAR(255) NOT NULL,
-    nomMotif VARCHAR(255) NOT NULL
-    dateScore DATE NOT NULL,
-    FOREIGN KEY (idMotifScore) REFERENCES Motif(idMotif),
---    FOREIGN KEY (nomMotif) REFERENCES Motif(nomMotif),
---    FOREIGN KEY (createur) REFERENCES Motif(createur)
+    nomMotif VARCHAR(255) NOT NULL,
+    dateScore DATE NOT NULL
 );
 
 
 
 -- ||----------------------------------------- PROCÉDURES STOCKÉES -----------------------------------------||
--- AJOUT D'UN MOTIF PAR UN UTILISATEUR
+-- Visualiser les objets selon l'id du motif
 
+DELIMITER //
+CREATE PROCEDURE motifSelonId(_idMotif INT)
+BEGIN
 
+    IF NOT EXISTS (SELECT idMotif FROM motif WHERE idMotif = _idMotif) THEN
+        signal SQLSTATE '45030' SET message_text = 'Aucun résultat trouvé';
+    END IF;
+
+    SELECT type, motif.idMotif AS ID, dateCreation AS Date_Creation, nomMotif AS Nom_Motif,
+                 source AS Source, imgCreation AS ImageRubik
+    FROM Motif
+    WHERE gps.idMotif = _idMotif;
+END //
 
 
 
