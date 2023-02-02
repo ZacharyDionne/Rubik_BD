@@ -7,18 +7,19 @@
 
 -- TABLE Type()
 CREATE TABLE  IF NOT EXISTS Type(
-    nomType VARCHAR(100) NOT NULL PRIMARY KEY
+    idType INT AUTO_INCREMENT PRIMARY KEY,
+    nomType VARCHAR(100) NOT NULL
 );
 
 -- TABLE Motif()
 CREATE TABLE  IF NOT EXISTS Motif(
     idMotif INT AUTO_INCREMENT PRIMARY KEY,
-    typeNom VARCHAR(100) NOT NULL,
+    idType_ INT NOT NULL,
     dateCreation DATE NOT NULL,
     source VARCHAR(255) NOT NULL,
     nomMotif VARCHAR(255) NOT NULL,
     imgCreation TEXT NOT NULL,
-    FOREIGN KEY (typeNom) REFERENCES type(nomType)
+    FOREIGN KEY (idType_) REFERENCES type(idType)
 );
 
 -- TABLE Score()
@@ -32,15 +33,24 @@ CREATE TABLE  IF NOT EXISTS Scores(
 -- ||----------------------------------------- INSERTIONS -----------------------------------------||
 -- TYPES
 INSERT INTO type VALUES
-                 ("Motif de base"),
-                 ("Motif créer par l'utilisateur");
+                 (NULL, "Motif de base"),
+                 (NULL, "Motif créer par l'utilisateur");
 
 -- MOTIFS
-INSERT INTO 
+INSERT INTO Motif VALUES (NULL, 1, "2020-02-20", "QAAAAA", "Allo", "imageCreation"),
+                   (NULL, 2, "2019-10-12", "sbfbf", "Bye", "imageCreationbye");
 
+INSERT INTO Motif VALUES (NULL, 2, "2021-02-20", "fds", "dsef", "fefe"),
+                   (NULL, 2, "2019-10-12", "sbfbf", "fff", "fefe");
+
+INSERT INTO Motif VALUES (NULL, 1, "2022-02-18", "htr", "sss", "fef"),
+                   (NULL, 2, "2023-01-12", "sbfbf", "sssff", "fefe");
+  
 -- SCORES
-
-INSERT INTO Motif VALUES (NULL, )
+INSERT INTO Scores VALUES (NULL, 2, "2023-02-02"),
+                         (NULL, 3, "2022-10-22"),
+                         (NULL, 3, "2023-02-02"),
+                         (NULL, 4, "2023-02-02");                     
 
 
 
@@ -59,7 +69,7 @@ BEGIN
     SELECT type, motif.idMotif AS ID, dateCreation AS Date_Creation, nomMotif AS Nom_Motif,
                  source AS Source, imgCreation AS ImageRubik
     FROM Motif
-    WHERE gps.idMotif = _idMotif;
+    WHERE Motif.idMotif = _idMotif;
 END //
 
 
@@ -144,5 +154,3 @@ CREATE OR REPACE VIEW v_MotifDateOrderDesc AS
 SELECT *
 FROM Motifs
 ORDER BY date ASC;
-
-
