@@ -16,7 +16,7 @@ CREATE TABLE  IF NOT EXISTS Motif(
     idMotif INT AUTO_INCREMENT PRIMARY KEY,
     idType_ INT NOT NULL,
     dateCreation DATE NOT NULL,
-    source VARCHAR(255) NOT NULL,
+    source TEXT NOT NULL,
     nomMotif VARCHAR(255) NOT NULL,
     imgCreation TEXT NOT NULL,
     FOREIGN KEY (idType_) REFERENCES type(idType)
@@ -54,7 +54,6 @@ INSERT INTO Scores VALUES (NULL, 2, "2023-02-02"),
 
 
 
-
 -- ||----------------------------------------- PROCÉDURES STOCKÉES -----------------------------------------||
 -- Visualiser les objets selon l'id du motif
 
@@ -74,13 +73,20 @@ END //
 
 
 
--- Classer les motifs selon le type
+-- Classer les motifs selon le type ainsi que le nom (RECHERCHE PAR NOM)
 DELIMITER//
-CREATE PROCEDURE motisSelonType
+CREATE PROCEDURE motisSelonType(_nomMotif VARCHAR(255))
+BEGIN
 
+        IF NOT EXISTS (SELECT nomMotif FROM motif WHERE nomMotif LIKE _nomMotif) THEN
+           signal SQLSTATE '45030' SET message_text = 'Aucun résultat trouvé';
+        END IF;
 
-
-
+        SELECT nomMotif, type.nomType, dateCreation, imgCreation, source
+        FROM Motif
+        INNER JOIN type ON type.idType = Motif.idMotif;
+        WHERE Motif.nomMotif LIKE _nomMotif;
+ 
 
 
 
