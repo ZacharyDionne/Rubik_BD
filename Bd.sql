@@ -5,7 +5,7 @@
 
 -- ||----------------------------------------- CRÉATION DES TABLES -----------------------------------------||
 
--- TABLE Type()
+-- TABLE TYPE()
 CREATE TABLE  IF NOT EXISTS Type(
     idType INT AUTO_INCREMENT PRIMARY KEY,
     nomType VARCHAR(100) NOT NULL
@@ -37,14 +37,14 @@ INSERT INTO type VALUES
                  (NULL, "Motif créer par l'utilisateur");
 
 -- MOTIFS
-INSERT INTO Motif VALUES (NULL, 1, "2020-02-20", "QAAAAA", "Allo", "imageCreation"),
-                   (NULL, 2, "2019-10-12", "sbfbf", "Bye", "imageCreationbye");
+INSERT INTO Motif VALUES (NULL, 1, "2020-02-20", "Toi", "Allo", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg"),
+                   (NULL, 2, "2019-10-12", "Chaton", "Bye", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg");
 
-INSERT INTO Motif VALUES (NULL, 2, "2021-02-20", "fds", "dsef", "fefe"),
-                   (NULL, 2, "2019-10-12", "sbfbf", "fff", "fefe");
+INSERT INTO Motif VALUES (NULL, 2, "2021-02-20", "Jean", "Chien", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg"),
+                   (NULL, 2, "2019-10-12", "Bob", "Chat", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg");
 
-INSERT INTO Motif VALUES (NULL, 1, "2022-02-18", "htr", "sss", "fef"),
-                   (NULL, 2, "2023-01-12", "sbfbf", "sssff", "fefe");
+INSERT INTO Motif VALUES (NULL, 1, "2022-02-18", "Application", "Bannane", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg"),
+                   (NULL, 2, "2023-01-12", "Application", "Pomme", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg");
   
 -- SCORES
 INSERT INTO Scores VALUES (NULL, 2, "2023-02-02"),
@@ -92,11 +92,11 @@ BEGIN
 
 -- ||----------------------------------------- DÉCLENCHEURS (TRIGGERS) -----------------------------------------||
 
--- -----------------------------AVANT L'INSERTION MOTIF ---------------------------
+-- -----------------------------AVANT L'INSERTION MOTIF ID UNIQUE---------------------------
 
 DELIMITER //
-CREATE TRIGGER before_inser_motif BEFORE INSERT
-ON Motifs
+CREATE TRIGGER before_inser_motif_id_unique BEFORE INSERT
+ON Motif
 FOR EACH ROW
 BEGIN
 
@@ -110,19 +110,18 @@ BEGIN
         BEGIN
             RESIGNAL SET MESSAGE_TEXT = 'ID existe déjà';
         begin
-            resignal set message_text = 'L/nid existe d j .';
+            resignal set message_text = 'L/nid existe déjà';
         END;
     
       -- idMotif unique
-        if (select idMotif from Motifs where idMotif=new.idMotif) IS NOT NULL THEN
+        if (select idMotif from Motif where idMotif=new.idMotif) IS NOT NULL THEN
             SIGNAL id_unique;
         END if;
 
         SET new.idMotif = idMotif;
 
-end //
-delimiter ;
-
+END //
+DELIMITER ;
 
 
 --  ------------------------------------------ LES VUES ----------------------------------------------------
@@ -130,7 +129,7 @@ delimiter ;
 -- Afficher la liste complète des motifs
 CREATE OR REPLACE VIEW v_MotifComplet AS
 SELECT * 
-FROM Motifs;
+FROM Motif;
 
 -- Afficher tous les Scores
 CREATE OR REPLACE VIEW v_ScoreComplet AS
@@ -138,25 +137,26 @@ SELECT *
 FROM Scores;
 
 -- Afficher tous les Scores par type
-CREATE OR REPLACE VIEW v_ScoreComplet AS
+/*CREATE OR REPLACE VIEW v_ScoreComplet AS
 SELECT *
 FROM Scores
+INNER JOIN
 GROUP BY idType;
-
+*/
 
 -- Afficher tous les types
 CREATE OR REPLACE VIEW v_Type AS
 SELECT *
-FROM Types;
+FROM Type;
 
 -- Afficher tous les motifs en date décroissant
-CREATE OR REPACE VIEW v_MotifDateOrderDesc AS
+CREATE OR REPLACE VIEW v_MotifDateOrderDesc AS
 SELECT *
-FROM Motifs
-ORDER BY date DESC;
+FROM Motif
+ORDER BY `dateCreation` DESC;
 
 -- Afficher tous les motifs en date croissant
-CREATE OR REPACE VIEW v_MotifDateOrderDesc AS
+CREATE OR REPLACE VIEW v_MotifDateOrderDesc AS
 SELECT *
-FROM Motifs
-ORDER BY date ASC;
+FROM Motif
+ORDER BY `dateCreation` ASC;
