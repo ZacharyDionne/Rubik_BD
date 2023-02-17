@@ -18,7 +18,7 @@ CREATE TABLE  IF NOT EXISTS Motif(
     dateCreation DATE NOT NULL,
     source TEXT NOT NULL,
     nomMotif VARCHAR(255) NOT NULL,
-    imgCreation TEXT NOT NULL,
+    imgCreation BLOB NOT NULL,
     FOREIGN KEY (idType_) REFERENCES type(idType)
 );
 
@@ -29,6 +29,7 @@ CREATE TABLE  IF NOT EXISTS Scores(
     dateScore DATE NOT NULL,
     FOREIGN KEY (idMotifScore) REFERENCES Motif(idMotif)
 );
+
 
 -- ||----------------------------------------- INSERTIONS -----------------------------------------||
 -- TYPES
@@ -160,3 +161,10 @@ CREATE OR REPLACE VIEW v_MotifDateOrderDesc AS
 SELECT *
 FROM Motif
 ORDER BY `dateCreation` ASC;
+
+
+
+
+DROP TABLE scores;
+DROP TABLE Motif;
+DROP TABLE `type`;
