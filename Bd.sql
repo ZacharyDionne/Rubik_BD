@@ -31,6 +31,13 @@ CREATE TABLE  IF NOT EXISTS Scores(
 );
 
 
+-- TABLE Utilisateur()
+CREATE TABLE IF NOT EXISTS Utilisateur(
+    idUtilisateur INT AUTO_INCREMENT PRIMARY KEY,
+    nomUtilisateur VARCHAR(100) NOT NULL,
+    motDePasseUtilisateur MD5(VARCHAR(255)) NOT NULL
+);
+
 -- ||----------------------------------------- INSERTIONS -----------------------------------------||
 -- TYPES
 INSERT INTO type VALUES
