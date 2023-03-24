@@ -49,7 +49,8 @@ INSERT INTO type VALUES
                  (NULL, "Motif créer par l'utilisateur");
 
  INSERT INTO utilisateur VALUES(NULL, "admin", "admin");
- INSERT INTO utilisateur VALUES(NULL, "titi", "titi");                
+ INSERT INTO utilisateur VALUES(NULL, "titi", "titi"); 
+ INSERT INTO utilisateur VALUES(NULL, "a", "a");               
 
 -- MOTIFS
 INSERT INTO Motif VALUES (NULL, 1, 2, "2020-02-20", "Toi", "Allo", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg", "Test"),
