@@ -11,15 +11,26 @@ CREATE TABLE  IF NOT EXISTS Type(
     nomType VARCHAR(100) NOT NULL
 );
 
+
+-- TABLE Utilisateur()
+CREATE TABLE IF NOT EXISTS Utilisateur(
+    idUser INT AUTO_INCREMENT PRIMARY KEY,
+    nomUtilisateur VARCHAR(100) NOT NULL UNIQUE,
+    motDePasseUtilisateur VARCHAR(255) NOT NULL
+);
+
 -- TABLE Motif()
 CREATE TABLE  IF NOT EXISTS Motif(
     idMotif INT AUTO_INCREMENT PRIMARY KEY,
     idType_ INT NOT NULL,
-    dateCreation DATE NOT NULL,
+    idUser_ INT NOT NULL,
+    dateCreation VARCHAR(10) NOT NULL,
     source TEXT NOT NULL,
     nomMotif VARCHAR(255) NOT NULL,
     imgCreation BLOB NOT NULL,
-    FOREIGN KEY (idType_) REFERENCES type(idType)
+    dataJson TEXT NOT NULL,
+    FOREIGN KEY (idType_) REFERENCES type(idType),
+    FOREIGN KEY (idUser_) REFERENCES utilisateur(idUser)
 );
 
 -- TABLE Score()
@@ -31,28 +42,24 @@ CREATE TABLE  IF NOT EXISTS Scores(
 );
 
 
--- TABLE Utilisateur()
-CREATE TABLE IF NOT EXISTS Utilisateur(
-    idUtilisateur INT AUTO_INCREMENT PRIMARY KEY,
-    nomUtilisateur VARCHAR(100) NOT NULL,
-    motDePasseUtilisateur MD5(VARCHAR(255)) NOT NULL
-);
-
 -- ||----------------------------------------- INSERTIONS -----------------------------------------||
 -- TYPES
 INSERT INTO type VALUES
                  (NULL, "Motif de base"),
                  (NULL, "Motif créer par l'utilisateur");
 
+ INSERT INTO utilisateur VALUES(NULL, "admin", "admin");
+ INSERT INTO utilisateur VALUES(NULL, "titi", "titi");                
+
 -- MOTIFS
-INSERT INTO Motif VALUES (NULL, 1, "2020-02-20", "Toi", "Allo", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg"),
-                   (NULL, 2, "2019-10-12", "Chaton", "Bye", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg");
+INSERT INTO Motif VALUES (NULL, 1, 2, "2020-02-20", "Toi", "Allo", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg", "Test"),
+                         (NULL, 2, 2, "2019-10-12", "Chaton", "Bye", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg", "Test2");
 
-INSERT INTO Motif VALUES (NULL, 2, "2021-02-20", "Jean", "Chien", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg"),
-                   (NULL, 2, "2019-10-12", "Bob", "Chat", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg");
+INSERT INTO Motif VALUES (NULL, 2, 1, "2021-02-20", "Jean", "Chien", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg", "Test3"),
+                   (NULL, 2, 1, "2019-10-12", "Bob", "Chat", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg", "Test4");
 
-INSERT INTO Motif VALUES (NULL, 1, "2022-02-18", "Application", "Bannane", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg"),
-                   (NULL, 2, "2023-01-12", "Application", "Pomme", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg");
+INSERT INTO Motif VALUES (NULL, 1, 1,  "2022-02-18", "Application", "Bannane", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg", "Test5"),
+                   (NULL, 2, 2, "2023-01-12", "Application", "Pomme", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Black_and_white_Norwegian_Forest_Cat.jpg/280px-Black_and_white_Norwegian_Forest_Cat.jpg" , "Test6");
   
 -- SCORES
 INSERT INTO Scores VALUES (NULL, 2, "2023-02-02"),
@@ -175,3 +182,5 @@ ORDER BY `dateCreation` ASC;
 DROP TABLE scores;
 DROP TABLE Motif;
 DROP TABLE `type`;
+
+DROP Table utilisateur;
