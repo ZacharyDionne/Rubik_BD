@@ -55,16 +55,15 @@ INSERT INTO type VALUES
                                 (NULL, "louis", "123");               
 
 -- MOTIFS
-INSERT INTO Motif VALUES (NULL, 1, 2, "2020-02-20", "Internet", "Le Superflip", "https://ruwix.com/pics/rubiks-cube/patterns/the-superflip.svg", "U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2"),
-                         (NULL, 2, 2, "2019-10-12", "Internet", "Wire", "https://ruwix.com/pics/rubiks-cube/patterns/wire.svg", "R L F B R L F B R L F B R2 B2 L2 R2 B2 L2"),
-                         (NULL, 1, 1,  "2022-02-18", "Internet", "Êtes-vous défoncé?", "https://ruwix.com/pics/rubiks-cube/patterns/hi-there.svg", "L R' U2 D2 L’R U2 D2 R2 L2"),
-                         (NULL, 2, 2, "2023-01-12", "Internet", "( ! ) (ˆ⌣ˆԅ)", "https://ruwix.com/pics/rubiks-cube/patterns/perfect-storm.svg" , "U' F2 R' L’U' B R2 D B U' R2 L B2 D’B2 U F2 B2 U' L2 B2 L2"),
-                         (NULL, 2, 1, "2021-02-20", "Internet", "Fleur", "https://ruwix.com/pics/rubiks-cube/patterns/flower-with-stem.svg", "R2 D2 R2 U2 R2 F2 U2 D2 F2 U2"),
-                         (NULL, 2, 1, "2019-10-12", "Internet", "Le bol de fruit", "https://ruwix.com/pics/rubiks-cube/patterns/fruit-bowl.svg", "B2 L2 F2 R2 F2 R2 D U B2 U2 B' F' L' R' D' U"),
-                         (NULL, 1, 1,  "2022-02-18", "Internet", "Cube dans un cube dans un cube", "https://ruwix.com/pics/rubiks-cube/patterns/cube-in-a-cube-in-a-cube.svg", "U' L’U' F' R2 B' R F U B2 U B' L U' F U R F'"),
-                         (NULL, 2, 2, "2023-01-12", "Internet", "Kilt (jupe écossaise)", "https://ruwix.com/pics/rubiks-cube/patterns/kilt.svg" , "U' R2 L2 F2 B2 U' R L F B' U F2 D2 R2 L2 F2 U2 F2 U' F2"),
-                         (NULL, 1, 1,  "2022-02-18", "Internet", "Nappe", "https://ruwix.com/pics/rubiks-cube/patterns/tablecloth.svg", "R L U2 F' U2 D2 R2 L2 F' D2 F2 D R2 L2 F2 B2 D B2 L2"),
-                         (NULL, 2, 2, "2023-01-12", "Internet", "Mathématiques rapide 1+1", "https://ruwix.com/pics/rubiks-cube/patterns/plus-with-dot.svg" , "R L F2 U2 R' L’F2 U2 R2 F2 U R2 L2 F2 B2 D'");
+INSERT INTO Motif VALUES (NULL, 1, 2, "2020-02-20", "Internet", "Le Superflip", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/LeSuperFlip.png", "U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2"),
+                         (NULL, 1, 1,  "2022-02-18", "Internet", "Êtes-vous défoncé?", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/EtesVousDefonce.png", "L R' U2 D2 L’R U2 D2 R2 L2"),
+                         (NULL, 2, 2, "2023-01-12", "Internet", "( ! ) (~^O^~)", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/(%20!%20)%20(~%5EO%5E~).png" , "U' F2 R' L’U' B R2 D B U' R2 L B2 D’B2 U F2 B2 U' L2 B2 L2"),
+                         (NULL, 2, 1, "2021-02-20", "Internet", "Fleur", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/Fleur.png", "R2 D2 R2 U2 R2 F2 U2 D2 F2 U2"),
+                         (NULL, 2, 1, "2019-10-12", "Internet", "Le bol de fruit", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/BolDeFruit.png", "B2 L2 F2 R2 F2 R2 D U B2 U2 B' F' L' R' D' U"),
+                         (NULL, 1, 1,  "2022-02-18", "Internet", "Cube dans un cube dans un cube", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/CubeDansUnCubeDansUnCube.png", "U' L’U' F' R2 B' R F U B2 U B' L U' F U R F'"),
+                         (NULL, 2, 2, "2023-01-12", "Internet", "Kilt (jupe écossaise)", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/Kilt.png" , "U' R2 L2 F2 B2 U' R L F B' U F2 D2 R2 L2 F2 U2 F2 U' F2"),
+                         (NULL, 1, 1,  "2022-02-18", "Internet", "Nappe", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/Nappe.png", "R L U2 F' U2 D2 R2 L2 F' D2 F2 D R2 L2 F2 B2 D B2 L2"),
+                         (NULL, 2, 2, "2023-01-12", "Internet", "Mathématiques rapide 1+1", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/MathematiqueRapide.png" , "R L F2 U2 R' L’F2 U2 R2 F2 U R2 L2 F2 B2 D'");
   
 -- SCORES
 INSERT INTO Scores VALUES (NULL, 2, "2023-02-02"),
@@ -187,5 +186,4 @@ ORDER BY `dateCreation` ASC;
 DROP TABLE scores;
 DROP TABLE Motif;
 DROP TABLE `type`;
-
 DROP Table utilisateur;
