@@ -65,6 +65,7 @@ INSERT INTO Motif VALUES (NULL, 1, 2, "2020-02-20", "Internet", "Le Superflip", 
                          (NULL, 1, 1,  "2022-02-18", "Internet", "Nappe", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/Nappe.png", "R L U2 F' U2 D2 R2 L2 F' D2 F2 D R2 L2 F2 B2 D B2 L2"),
                          (NULL, 2, 2, "2023-01-12", "Internet", "Mathématiques rapide 1+1", "http://cours.cegep3r.info/H2023/420606RI/GR04/ImageCube/MathematiqueRapide.png" , "R L F2 U2 R' L’F2 U2 R2 F2 U R2 L2 F2 B2 D'");
   
+INSERT INTO motif VALUE (NULL, 2,2, "2023-01-31", "Internet", "Salut tout autour!", "https://ruwix.com/pics/rubiks-cube/patterns/hi-all-around.svg", "U2 R2 F2 U2 D2 F2 L2 U2")
 -- SCORES
 INSERT INTO Scores VALUES (NULL, 2, "2023-02-02"),
                          (NULL, 3, "2022-10-22"),
